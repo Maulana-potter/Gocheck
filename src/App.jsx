@@ -12,6 +12,7 @@ const App = () => {
     { id: 4, title: "bermain", done: false },
     { id: 5, title: "belajar", done: false },
   ];
+
   const [listItem, setListItem] = useState(Item);
   const addItem = (title) => {
     const newItem = {
@@ -33,6 +34,13 @@ const App = () => {
     setListItem(listItem.filter((item) => item.id !== id));
   };
 
+  function handleClearItems() {
+    const confirm = window.confirm("are you sure want to clear the list?");
+    if (confirm) {
+      setListItem([]);
+    }
+  }
+
   return (
     <div className="app">
       <Logo />
@@ -41,6 +49,7 @@ const App = () => {
         listItem={listItem}
         toggleDone={toggleDone}
         deleteItem={deleteItem}
+        onClearItems={handleClearItems}
       />
 
       <Stats listItem={listItem} />
